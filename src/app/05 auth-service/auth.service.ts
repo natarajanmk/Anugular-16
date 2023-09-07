@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
+import { Observable, of } from 'rxjs';
+
+// import 'rxjs/add/observable/of';
+// import 'rxjs/add/operator/map';
 
 import { User } from './user';
 
