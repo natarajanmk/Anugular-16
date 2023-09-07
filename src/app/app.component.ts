@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IconSetService } from '@coreui/icons-angular';
+import { cilListNumbered, cilPaperPlane, brandSet } from '@coreui/icons';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor(public iconSet: IconSetService) {
+    iconSet.icons = { cilListNumbered, cilPaperPlane, ...brandSet };
+  }
 
   ngOnInit() {}
 }
