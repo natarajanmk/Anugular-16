@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AdminComponent } from './admin.component';
 import { ReadComponent } from './read/read/read.component';
+import { SimpleAuthGuardService } from './simple-auth-guard.service';
 import { WriteComponent } from './write/write/write.component';
 
 const routes: Routes = [

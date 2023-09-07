@@ -8,7 +8,7 @@ export class SimpleAuthService {
     localStorage.getItem('loggedIn') || 'false'
   );
 
-  setLoginStatus(value) {
+  setLoginStatus(value: any) {
     this.loggedInStatus = value;
     localStorage.setItem('loggedIn', 'true');
   }
@@ -26,8 +26,8 @@ export class SimpleAuthService {
   }
 
   logInUser(username: string, password: string) {
-    setLoginStatus(true);
-    return LoginStatus();
+    this.setLoginStatus(true);
+    return this.LoginStatus();
     //return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 }

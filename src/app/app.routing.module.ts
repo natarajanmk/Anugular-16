@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   {
-    path: '',
+    path: 'admin',
     loadChildren: () =>
       import('./02 component/admin/admin.module').then((m) => m.AdminModule),
   },
