@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 // import 'rxjs/add/observable/of';
 // import 'rxjs/add/operator/map';
@@ -11,7 +13,7 @@ const USERS = [
   new User(1, 'test', 'test', 'ADMIN'),
 ];
 
-var userObservable = Observable.of(USERS);
+var userObservable = of(USERS);
 
 @Injectable()
 export class AuthService {
@@ -26,19 +28,22 @@ export class AuthService {
   getAllUsers(): Observable<User[]> {
     return userObservable;
   }
-  isUserAuthenticated(username: string, password: string): Observable<boolean> {
-    return this.getAllUsers().map((users) => {
-      let user = users.find(
-        (user) => user.userName === username && user.password === password
-      );
-      if (user) {
-        this.isloggedIn = true;
-        this.loggedInUser = user;
-      } else {
-        this.isloggedIn = false;
-      }
-      return this.isloggedIn;
-    });
+
+  isUserAuthenticated(username: string, password: string): boolean {
+    return this.isloggedIn;
+    //this.getAllUsers().map((users) => {
+    //   let user = users.find(
+    //     (user) => user.userName === username && user.password === password
+    //   );
+    //   if (user) {
+    //     this.isloggedIn = true;
+    //     this.loggedInUser = user;
+    //   } else {
+    //     this.isloggedIn = false;
+    //   }
+    //   return this.isloggedIn;
+    // });
+    // return false;
   }
   isUserLoggedIn(): boolean {
     return this.isloggedIn;
