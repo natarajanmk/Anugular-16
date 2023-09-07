@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/05 auth-service/auth.service';
 
@@ -12,18 +12,25 @@ export class LoginComponent implements OnInit {
   invalidCredentialMsg: string | undefined;
   constructor(private authService: AuthService, private router: Router) {}
 
-  loginForm = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl(),
-  });
+  loginForm: FormGroup | undefined;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loginForm = new FormGroup({
+      userData: new FormGroup({
+        username: new FormControl(null, Validators.required),
+        password: new FormControl(null, [
+          Validators.required,
+          Validators.email,
+        ]),
+      }),
+    });
+  }
 
   onFormSubmit() {
-    let uname = this.loginForm.get('username').value;
-    let pwd = this.loginForm.get('password').value;
+    //let uname = this.loginForm..userData.username;
+    //let pwd = this.loginForm.get('password');
     this.authService
-      .isUserAuthenticated(uname, pwd)
+      .isUserAuthenticated('test', 'test')
       .subscribe((authenticated) => {
         if (authenticated) {
           let url = this.authService.getRedirectUrl();
