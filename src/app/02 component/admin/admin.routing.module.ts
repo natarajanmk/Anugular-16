@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 import { AdminComponent } from './admin.component';
 import { ReadComponent } from './read/read/read.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'write', component: WriteComponent },
     ],
   },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
