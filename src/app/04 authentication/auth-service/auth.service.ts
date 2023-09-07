@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   isUserAuthenticated(username: string, password: string): boolean {
-    return this.isloggedIn;
+    return (this.isloggedIn = true);
     //this.getAllUsers().map((users) => {
     //   let user = users.find(
     //     (user) => user.userName === username && user.password === password

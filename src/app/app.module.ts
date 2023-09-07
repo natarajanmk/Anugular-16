@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './01 header/header.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FooterComponent } from './03 footer/footer.component';
+import { AuthService } from './04 authentication/auth-service/auth.service';
+import { AuthGuardService } from './04 authentication/auth-service/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
