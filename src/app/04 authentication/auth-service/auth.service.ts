@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-// import 'rxjs/add/observable/of';
-// import 'rxjs/add/operator/map';
+import { Observable, of } from 'rxjs';
 
 import { User } from './user';
 
@@ -13,38 +8,44 @@ const USERS = [
   new User(1, 'test', 'test', 'ADMIN'),
 ];
 
-var userObservable = of(USERS);
+//let usersObservable = Observable.of(USERS);
 
 @Injectable()
 export class AuthService {
   private redirectUrl: string = '/';
   private loginUrl: string = '/login';
   private isloggedIn: boolean = false;
-  private loggedInUser: any;
   //private loggedInUser: User;
+  private loggedInUser: any;
 
   constructor() {}
 
-  getAllUsers(): Observable<User[]> {
-    return userObservable;
+  getAllUsers(): User[] {
+    return USERS;
   }
 
+  // getAllUsers(): Observable<User[]> {
+  //   return usersObservable;
+  // }
+
   isUserAuthenticated(username: string, password: string): boolean {
-    return (this.isloggedIn = true);
-    //this.getAllUsers().map((users) => {
-    //   let user = users.find(
-    //     (user) => user.userName === username && user.password === password
-    //   );
-    //   if (user) {
-    //     this.isloggedIn = true;
-    //     this.loggedInUser = user;
-    //   } else {
-    //     this.isloggedIn = false;
-    //   }
-    //   return this.isloggedIn;
-    // });
-    // return false;
+    return true;
   }
+  // isUserAuthenticated(username: string, password: string): Observable<boolean> {
+  //   return this.getAllUsers().map((users) => {
+  //     let user = users.find(
+  //       (user) => user.username === username && user.password === password
+  //     );
+  //     if (user) {
+  //       this.isloggedIn = true;
+  //       this.loggedInUser = user;
+  //     } else {
+  //       this.isloggedIn = false;
+  //     }
+  //     return this.isloggedIn;
+  //   });
+  // }
+
   isUserLoggedIn(): boolean {
     return this.isloggedIn;
   }
