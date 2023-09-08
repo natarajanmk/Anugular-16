@@ -1,39 +1,58 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+const loginUserInfo: LoginUser[] = [
+  { userId: 1, userName: 'abc', password: 'abc', role: 'USER' },
+  { userId: 2, userName: 'test', password: 'test', role: 'ADMIN' },
+];
+
+const loginUserObservable: Observable<LoginUser[]> = of(loginUserInfo);
 
 @Injectable({ providedIn: 'root' })
 export class LoginAuthService {
   constructor() {}
   private isloggedIn: boolean = false;
-  private loggedInUser: any;
+  private loggedInUser: LoginUser | undefined;
   private redirectUrl: string = '/';
   private loginUrl: string = '/login';
 
   loginUserInfo: LoginUser[] = [
     { userId: 1, userName: 'abc', password: 'abc', role: 'USER' },
-    { userId: 1, userName: 'test', password: 'test', role: 'ADMIN' },
+    { userId: 2, userName: 'test', password: 'test', role: 'ADMIN' },
   ];
 
+  getAllLoginUser1(): Observable<LoginUser[]> {
+    return loginUserObservable;
+  }
+
   getAllLoginUser(): Observable<LoginUser[]> {
-    let loginUsers = new Observable<LoginUser[]>((observer) => {
+    return new Observable<LoginUser[]>((observer) => {
       observer.next(this.loginUserInfo);
+      observer.complete();
     });
-    return loginUsers;
   }
 
   isValidUser(username: string, password: string): boolean {
     this.isloggedIn = false;
-    this.getAllLoginUser().pipe(
-      map((users) => {
-        this.loggedInUser = users.find((user) => {
-          user.userName === username && user.password === password;
-        });
-      })
-    );
-    if (this.loggedInUser) {
-      this.isloggedIn = true;
-    }
+
+    this.getAllLoginUser1()
+      .pipe(
+        map((users) => {
+          let user = users.find(
+            (user) => user.userName === username && user.password === password
+          );
+          //console.log('find:' + JSON.stringify(user));
+          return (this.loggedInUser = user);
+        })
+      )
+      .subscribe((res) => {
+        //console.log('find:' + JSON.stringify(this.loggedInUser));
+        if (this.loggedInUser) {
+          this.loggedInUser = res;
+          this.isloggedIn = true;
+        }
+      });
     return this.isloggedIn;
   }
   isUserLoggedIn(): boolean {
@@ -48,7 +67,7 @@ export class LoginAuthService {
   getLoginUrl(): string {
     return this.loginUrl;
   }
-  getLoggedInUser(): LoginUser {
+  getLoggedInUser(): LoginUser | undefined {
     return this.loggedInUser;
   }
   logoutUser(): void {

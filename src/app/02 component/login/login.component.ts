@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginAuthService } from './admin/login.auth.service';
+import { LoginAuthService } from '../admin/login.auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,22 +16,51 @@ import { LoginAuthService } from './admin/login.auth.service';
 export class LoginComponent implements OnInit {
   constructor(
     private loginAuthService: LoginAuthService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {}
 
-  loginForm!: FormGroup;
+  loginForm: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      userData: new FormGroup({
-        username: new FormControl('', Validators.required),
-        password: new FormControl('', [Validators.required, Validators.email]),
-      }),
+    this.loginForm = this.formBuilder.group({
+      username: [
+        '',
+        [
+          Validators.required,
+          //Validators.minLength(6),
+          //Validators.maxLength(20),
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          //Validators.minLength(6),
+          //Validators.maxLength(40),
+        ],
+      ],
     });
   }
 
   onFormSubmit() {
-    //let uname = this.loginForm..userData.username;
-    //let pwd = this.loginForm.get('password');
+    //console.log(JSON.stringify(this.loginForm.value, null, 2));
+    if (
+      this.loginAuthService.isValidUser(
+        this.loginForm.value.username,
+        this.loginForm.value.password
+      )
+    ) {
+      console.log('valid user');
+      this.router.navigate(['/admin']);
+    } else {
+      console.log('in-valid user');
+    }
+  }
+  onReset(): void {
+    this.loginForm.reset();
   }
 }
