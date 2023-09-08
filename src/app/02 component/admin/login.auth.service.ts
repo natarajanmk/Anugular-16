@@ -55,6 +55,7 @@ export class LoginAuthService {
       });
     return this.isloggedIn;
   }
+
   isUserLoggedIn(): boolean {
     return this.isloggedIn;
   }

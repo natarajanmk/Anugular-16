@@ -4,6 +4,7 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginAuthService } from '../admin/login.auth.service';
@@ -44,6 +45,10 @@ export class LoginComponent implements OnInit {
         ],
       ],
     });
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.loginForm.controls;
   }
 
   onFormSubmit() {
