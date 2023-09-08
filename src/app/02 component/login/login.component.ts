@@ -27,24 +27,29 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: [
-        '',
-        [
-          Validators.required,
-          //Validators.minLength(6),
-          //Validators.maxLength(20),
+    this.loginForm = this.formBuilder.group(
+      {
+        username: [
+          '',
+          [
+            Validators.required,
+            //Validators.minLength(6),
+            //Validators.maxLength(20),
+          ],
         ],
-      ],
-      password: [
-        '',
-        [
-          Validators.required,
-          //Validators.minLength(6),
-          //Validators.maxLength(40),
+        password: [
+          '',
+          [
+            Validators.required,
+            //Validators.minLength(6),
+            //Validators.maxLength(40),
+          ],
         ],
-      ],
-    });
+      }
+      // {
+      //   validators: [Validation.match('password', 'confirmPassword')],
+      // }
+    );
   }
 
   get f(): { [key: string]: AbstractControl } {
