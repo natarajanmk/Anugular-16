@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SimpleAuthService } from '../08 _services/auth.service';
+import { LoginAuthService } from './admin/login.auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +9,14 @@ import { SimpleAuthService } from '../08 _services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: SimpleAuthService, private router: Router) {}
+  constructor(
+    private loginAuthService: LoginAuthService,
+    private router: Router
+  ) {}
 
   loginForm!: FormGroup;
 
   ngOnInit() {
-    console.log('login component');
     this.loginForm = new FormGroup({
       userData: new FormGroup({
         username: new FormControl('', Validators.required),

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoginAuthService {
   constructor() {}
   private isloggedIn: boolean = false;
-  private loggedInUser: LoginUser = null;
+  private loggedInUser: any;
   private redirectUrl: string = '/';
-  private loginUrl: string = 'admin/login';
+  private loginUrl: string = '/login';
 
   loginUserInfo: LoginUser[] = [
     { userId: 1, userName: 'abc', password: 'abc', role: 'USER' },
@@ -23,11 +24,13 @@ export class LoginAuthService {
 
   isValidUser(username: string, password: string): boolean {
     this.isloggedIn = false;
-    this.getAllLoginUser().map((users) => {
-      this.loggedInUser = users.find((user) => {
-        user.userName === username && user.password === password;
-      });
-    });
+    this.getAllLoginUser().pipe(
+      map((users) => {
+        this.loggedInUser = users.find((user) => {
+          user.userName === username && user.password === password;
+        });
+      })
+    );
     if (this.loggedInUser) {
       this.isloggedIn = true;
     }
@@ -40,7 +43,7 @@ export class LoginAuthService {
     return this.redirectUrl;
   }
   setRedirectUrl(url: string): void {
-    this.redirectUrl = url;
+    this.redirectUrl = url + this.loginUrl;
   }
   getLoginUrl(): string {
     return this.loginUrl;

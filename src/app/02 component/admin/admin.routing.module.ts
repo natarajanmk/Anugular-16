@@ -4,14 +4,14 @@ import { LoginComponent } from '../login/login.component';
 
 import { AdminComponent } from './admin.component';
 import { ReadComponent } from './read/read/read.component';
-import { SimpleAuthGuardService } from './simple-auth-guard.service';
+import { LoginAuthGuardService } from './login.auth.guard.service';
 import { WriteComponent } from './write/write/write.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    canActivate: [SimpleAuthGuardService],
+    canActivate: [LoginAuthGuardService],
     children: [
       { path: 'read', component: ReadComponent },
       { path: 'write', component: WriteComponent },
