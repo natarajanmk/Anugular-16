@@ -8,8 +8,6 @@ const USERS = [
   new User(1, 'test', 'test', 'ADMIN'),
 ];
 
-//let usersObservable = Observable.of(USERS);
-
 @Injectable()
 export class AuthService {
   private redirectUrl: string = '/';
@@ -20,13 +18,12 @@ export class AuthService {
 
   constructor() {}
 
-  getAllUsers(): User[] {
-    return USERS;
+  getAllUsers(): Observable<User[]> {
+    let data = new Observable<User[]>((observer) => {
+      observer.next(USERS);
+    });
+    return data;
   }
-
-  // getAllUsers(): Observable<User[]> {
-  //   return usersObservable;
-  // }
 
   isUserAuthenticated(username: string, password: string): boolean {
     return true;
@@ -34,7 +31,7 @@ export class AuthService {
   // isUserAuthenticated(username: string, password: string): Observable<boolean> {
   //   return this.getAllUsers().map((users) => {
   //     let user = users.find(
-  //       (user) => user.username === username && user.password === password
+  //       (user) => user.userName === username && user.password === password
   //     );
   //     if (user) {
   //       this.isloggedIn = true;
