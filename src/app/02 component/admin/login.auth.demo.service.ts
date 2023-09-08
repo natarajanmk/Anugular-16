@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 
@@ -27,7 +28,17 @@ export class RxjsValidation {
     return this._loginUserInfo;
   }
 
-  login(username: string) {}
+  login(username: string) {
+    this.httpClient.post<LoginInfo>('', null).subscribe({
+      next: (data) => {
+        this._loginSuccess.next(true);
+        this._loginUserInfo.next(data);
+      },
+      error: () => {
+        this._loginSuccess.next(false);
+      },
+    });
+  }
 }
 
 export class LoginInfo {
