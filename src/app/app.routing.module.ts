@@ -6,19 +6,19 @@ import { ContactUsComponent } from './02 component/contact-us/contact-us.compone
 import { AboutUsComponent } from './02 component/about-us/about-us.component';
 import { ProductsComponent } from './02 component/products/products.component';
 import { ErrorComponent } from './02 component/error/error.component';
+import { HomeService } from './02 component/home/home.service';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: HomeComponent,
-  //   canActivate: [AuthGuardService],
-  //   children: [
-  //     { path: 'products', component: ProductsComponent },
-  //     { path: 'about-us', component: AboutUsComponent },
-  //     { path: 'contact-us', component: ContactUsComponent },
-  //   ],
-  // },
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    resolve: { loginInfo: HomeService },
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    resolve: { loginInfo: HomeService },
+  },
   { path: 'products', component: ProductsComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },

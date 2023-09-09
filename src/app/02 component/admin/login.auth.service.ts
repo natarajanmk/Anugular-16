@@ -1,5 +1,4 @@
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Observable, of } from 'rxjs';
 
