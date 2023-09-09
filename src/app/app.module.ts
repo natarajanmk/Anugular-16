@@ -6,8 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FooterComponent } from './footer/footer.component';
-import { AuthService } from './04 authentication/auth-service/auth.service';
-import { AuthGuardService } from './04 authentication/auth-service/auth-guard.service';
+import { AuthService } from './_authentication/auth-service/auth.service';
+import { AuthGuardService } from './_authentication/auth-service/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],

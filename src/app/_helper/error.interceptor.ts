@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthenticationService } from '../08 _services/authentication.service';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -19,13 +19,13 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((err) => {
-        if (err.status === 401) {
+        if ([401, 403].includes(err.status)) {
           // auto logout if 401 response returned from api
           this.authenticationService.logout();
           location.reload();
         }
 
-        const error = err.error.message || err.statusText;
+        const error = err.error?.message || err.statusText;
         return throwError(error);
       })
     );
