@@ -9,6 +9,6 @@ export class AdminComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('admin component called');
+    //console.log('admin component called');
   }
 }

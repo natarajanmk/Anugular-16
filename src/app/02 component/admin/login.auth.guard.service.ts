@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { LoginAuthService } from './login.auth.service';
+import { LoginAuthService, LoginUser } from './login.auth.service';
 import {
   CanActivate,
+  CanActivateChild,
   Router,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
-export class LoginAuthGuardService implements CanActivate {
+export class LoginAuthGuardService implements CanActivate, CanActivateChild {
   constructor(
     private loginAuthService: LoginAuthService,
     private router: Router
@@ -25,5 +26,15 @@ export class LoginAuthGuardService implements CanActivate {
     this.router.navigate([this.loginAuthService.getRedirectUrl()]);
     //this.router.navigate(['admin/login']);
     return false;
+  }
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    let isAdminUser = true;
+    var path = route.routeConfig?.path;
+    let user: LoginUser | undefined = this.loginAuthService.getLoggedInUser();
+    if (user?.role === 'USER' && (path === 'read' || path === null)) {
+      isAdminUser = false;
+      alert('you are not authorized');
+    }
+    return isAdminUser;
   }
 }

@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     canActivate: [LoginAuthGuardService],
+    canActivateChild: [LoginAuthGuardService],
     children: [
       { path: 'read', component: ReadComponent },
       { path: 'write', component: WriteComponent },
