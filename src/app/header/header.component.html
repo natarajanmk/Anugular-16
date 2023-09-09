@@ -8,7 +8,9 @@
       height="30"
     />
   </div>
-  <div class="loginHeaderName">{{ loggedInName }}</div>
+  <div class="loginHeaderName" *ngIf="loggedInName.length > 0">
+    welcome {{ loggedInName }}
+  </div>
   <div>
     <button
       class="navbar-toggler"

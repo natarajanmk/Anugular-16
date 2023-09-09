@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
   loggedInName: string = '';
 
   ngOnInit() {
-    // this.loginSharedService.loggedInUserName.subscribe((res) => {
-    //   this.loggedInName = res;
-    // })
+    this.loginSharedService.loggedInUserName.subscribe((res) => {
+      this.loggedInName = res;
+    });
   }
 }

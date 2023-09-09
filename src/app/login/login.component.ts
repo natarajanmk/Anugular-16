@@ -68,9 +68,9 @@ export class LoginComponent implements OnInit {
         this.loginForm.value.password
       )
     ) {
-      // this.loginSharedService.updateLoggedUserName(
-      //   this.loginForm.value.username
-      // );
+      this.loginSharedService.updateLoggedUserName(
+        this.loginForm.value.username
+      );
 
       console.log('valid user');
       this.router.navigate(['/admin']);
