@@ -6,8 +6,11 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+
 import { Router } from '@angular/router';
+
 import { LoginAuthService } from '../admin/login.auth.service';
+import { LoginSharedService } from '../services/login.shared.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginAuthService: LoginAuthService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private loginSharedService: LoginSharedService
   ) {}
 
   loginForm: FormGroup = new FormGroup({
@@ -64,6 +68,10 @@ export class LoginComponent implements OnInit {
         this.loginForm.value.password
       )
     ) {
+      // this.loginSharedService.updateLoggedUserName(
+      //   this.loginForm.value.username
+      // );
+
       console.log('valid user');
       this.router.navigate(['/admin']);
     } else {

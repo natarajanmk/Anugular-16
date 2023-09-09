@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './02 component/home/home.component';
-import { ContactUsComponent } from './02 component/contact-us/contact-us.component';
-import { AboutUsComponent } from './02 component/about-us/about-us.component';
-import { ProductsComponent } from './02 component/products/products.component';
-import { ErrorComponent } from './02 component/error/error.component';
-import { HomeService } from './02 component/home/home.service';
+import { HomeComponent } from './home/home.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ProductsComponent } from './products/products.component';
+import { ErrorComponent } from './error/error.component';
+import { HomeService } from './home/home.service';
 
 const routes: Routes = [
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-      import('./02 component/admin/admin.module').then((m) => m.AdminModule),
+      import('./admin/admin.module').then((m) => m.AdminModule),
   },
   { path: '**', component: ErrorComponent },
 ];
