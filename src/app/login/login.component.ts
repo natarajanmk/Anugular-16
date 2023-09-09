@@ -10,7 +10,7 @@ import {
 import { Router } from '@angular/router';
 
 import { LoginAuthService } from '../admin/login.auth.service';
-import { LoginSharedService } from '../services/login.shared.service';
+import { LoginSharedService } from '../_services';
 
 @Component({
   selector: 'app-login',
