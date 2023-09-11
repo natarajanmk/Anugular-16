@@ -1,12 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  AfterViewInit,
-  AfterViewChecked,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BasicHighlightDirective } from '../_directive';
+import { DirectivesModule } from '../_directive/directives';
 
 @Component({
   selector: 'app-home',

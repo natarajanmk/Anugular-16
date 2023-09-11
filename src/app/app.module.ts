@@ -13,6 +13,7 @@ import {
   BasicHighlightDirective,
   BetterHighlightDirective,
 } from './_directive';
+import { DirectivesModule } from './_directive/directives';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    DirectivesModule,
     //AlertModule,
     NgbCollapseModule,
   ],

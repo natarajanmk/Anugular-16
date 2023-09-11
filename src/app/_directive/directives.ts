@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BasicHighlightDirective } from './_directive';
+import { BasicHighlightDirective } from './basic.highlight.directive';
 
 export const DIRECTIVES = [BasicHighlightDirective];
 
