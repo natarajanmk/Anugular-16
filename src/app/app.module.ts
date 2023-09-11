@@ -8,27 +8,15 @@ import { AppRoutingModule } from './app.routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './_authentication/auth-service/auth.service';
 import { AuthGuardService } from './_authentication/auth-service/auth-guard.service';
-import { AlertModule } from './_alert';
-import {
-  BasicHighlightDirective,
-  BetterHighlightDirective,
-} from './_directive';
 import { DirectivesModule } from './_directive/directives';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    // BasicHighlightDirective,
-    // BetterHighlightDirective,
-  ],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     DirectivesModule,
-    //AlertModule,
     NgbCollapseModule,
   ],
   providers: [AuthService, AuthGuardService],

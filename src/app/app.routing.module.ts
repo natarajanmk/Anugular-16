@@ -7,7 +7,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ProductsComponent } from './products/products.component';
 import { ErrorComponent } from './error/error.component';
 import { HomeService } from './_services';
-import { HighlightDirective } from './_directive';
+import { DirectivesModule } from './_directive/directives';
 
 const routes: Routes = [
   {
@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: '**', component: ErrorComponent },
 ];
 @NgModule({
-  declarations: [HighlightDirective],
+  declarations: [],
   imports: [CommonModule, RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })

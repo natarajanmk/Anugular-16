@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginSharedService } from '../_services';
+import { DirectivesModule } from '../_directive/directives';
 
 @Component({
   selector: 'app-header',
