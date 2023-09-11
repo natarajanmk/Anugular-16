@@ -9,9 +9,16 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './_authentication/auth-service/auth.service';
 import { AuthGuardService } from './_authentication/auth-service/auth-guard.service';
 import { AlertModule } from './_alert';
+import { AlertInfoDirective, HighlightDirective } from './_directive';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HighlightDirective,
+    AlertInfoDirective,
+  ],
   imports: [
     BrowserModule,
     FormsModule,

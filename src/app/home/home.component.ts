@@ -6,7 +6,6 @@ import {
   AfterViewChecked,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +15,8 @@ import { LoginComponent } from '../login/login.component';
 export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
   loginInfo: any = null;
+  color: string = '';
+  alertMessage: string = 'welcome custome alert message';
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
