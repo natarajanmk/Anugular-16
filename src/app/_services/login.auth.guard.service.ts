@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginAuthService, LoginUser } from './login.auth.service';
+
 import {
   CanActivate,
   CanActivateChild,
@@ -7,6 +7,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
+import { LoginAuthService } from './login.auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoginAuthGuardService implements CanActivate, CanActivateChild {

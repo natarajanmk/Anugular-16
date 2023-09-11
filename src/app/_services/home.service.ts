@@ -5,20 +5,20 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
-import { LoginInfo } from '../admin/login.auth.demo.service';
-import { LoginAuthService } from '../admin/login.auth.service';
-import { map } from 'rxjs/operators';
+
+import { LoginUser } from '../_model';
+import { LoginAuthService } from './login.auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class HomeService implements Resolve<LoginInfo[]> {
+export class HomeService implements Resolve<LoginUser[]> {
   constructor(private loginAuthService: LoginAuthService) {}
 
-  _loginUserInfo = new BehaviorSubject<LoginInfo[] | undefined>(undefined);
+  _loginUserInfo = new BehaviorSubject<LoginUser[] | undefined>(undefined);
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<LoginInfo[]> | Promise<LoginInfo[]> | LoginInfo[] {
+  ): Observable<LoginUser[]> | Promise<LoginUser[]> | LoginUser[] {
     return this.loginAuthService.getAllLoginUser();
   }
 }

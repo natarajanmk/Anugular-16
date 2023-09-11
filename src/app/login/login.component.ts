@@ -9,9 +9,8 @@ import {
 
 import { Router } from '@angular/router';
 
-import { LoginAuthService } from '../admin/login.auth.service';
 import { LoginUser } from '../_model/user';
-import { LoginSharedService } from '../_services';
+import { LoginAuthService, LoginSharedService } from '../_services';
 
 @Component({
   selector: 'app-login',

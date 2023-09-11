@@ -6,7 +6,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ProductsComponent } from './products/products.component';
 import { ErrorComponent } from './error/error.component';
-import { HomeService } from './home/home.service';
+import { HomeService } from './_services';
 
 const routes: Routes = [
   {

@@ -8,10 +8,17 @@ import { AppRoutingModule } from './app.routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './_authentication/auth-service/auth.service';
 import { AuthGuardService } from './_authentication/auth-service/auth-guard.service';
+import { AlertModule } from './_alert';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, NgbCollapseModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    AlertModule,
+    NgbCollapseModule,
+  ],
   providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent],
 })
