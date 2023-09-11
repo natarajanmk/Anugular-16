@@ -1,9 +1,13 @@
 <div>
+  {{ loggedUserRole }}
+</div>
+
+<div>
   <ul>
     <li>
       <a [routerLink]="'/admin/read'">Read</a>
     </li>
-    <li>
+    <li *ngIf="loggedUserRole === 'ADMIN'">
       <a [routerLink]="'/admin/write'">Write</a>
     </li>
   </ul>

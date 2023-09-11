@@ -15,6 +15,8 @@ export class LoginAuthGuardService implements CanActivate, CanActivateChild {
     private router: Router
   ) {}
 
+  user: any;
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let url: string = state.url;
     //console.log('Url:' + url);
@@ -30,8 +32,12 @@ export class LoginAuthGuardService implements CanActivate, CanActivateChild {
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let isAdminUser = true;
     var path = route.routeConfig?.path;
-    let user: LoginUser | undefined = this.loginAuthService.getLoggedInUser();
-    if (user?.role === 'USER' && (path === 'read' || path === null)) {
+
+    this.loginAuthService.getLoggedInUser().subscribe((res) => {
+      this.user = res;
+    });
+
+    if (this.user?.role === 'USER' && (path === 'read' || path === null)) {
       isAdminUser = false;
       alert('you are not authorized');
     }

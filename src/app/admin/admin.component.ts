@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginUser } from '../_model/user';
+import { LoginSharedService } from '../_services';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin',
@@ -6,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  constructor() {}
+  constructor(private loginSharedService: LoginSharedService) {}
+  loggedUserRole: string = '';
 
   ngOnInit() {
-    //console.log('admin component called');
+    this.loginSharedService.loggedInUser
+      .pipe(
+        map((res: LoginUser) => {
+          return res;
+        })
+      )
+      .subscribe((res) => {
+        this.loggedUserRole = res.role;
+      });
+
+    // this.loginSharedService.loggedInUser.subscribe((res) => {
+    //   debugger;
+    //   this.loggedUserInfo = res;
+    //   //console.log(JSON.stringify(this.loggedUserInfo));
+    // });
   }
 }

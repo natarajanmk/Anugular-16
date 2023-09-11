@@ -19,6 +19,8 @@ export class RxjsValidation {
     undefined
   );
 
+  private _loggedUserInfo = new Subject<LoginInfo>();
+
   //Observable declaration
   loginSuccess(): Observable<boolean> {
     return this._loginSuccess;
@@ -28,11 +30,16 @@ export class RxjsValidation {
     return this._loginUserInfo;
   }
 
+  getLoggedInUserInfo(): Observable<LoginInfo> {
+    return this._loggedUserInfo;
+  }
+
   login(username: string) {
     this.httpClient.post<LoginInfo>('', null).subscribe({
       next: (data) => {
         this._loginSuccess.next(true);
         this._loginUserInfo.next(data);
+        this._loggedUserInfo.next(data);
       },
       error: () => {
         this._loginSuccess.next(false);

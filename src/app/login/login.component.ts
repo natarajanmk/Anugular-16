@@ -10,6 +10,7 @@ import {
 import { Router } from '@angular/router';
 
 import { LoginAuthService } from '../admin/login.auth.service';
+import { LoginUser } from '../_model/user';
 import { LoginSharedService } from '../_services';
 
 @Component({
@@ -18,6 +19,8 @@ import { LoginSharedService } from '../_services';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  loggedUser: any;
+
   constructor(
     private loginAuthService: LoginAuthService,
     private router: Router,
@@ -71,6 +74,12 @@ export class LoginComponent implements OnInit {
       this.loginSharedService.updateLoggedUserName(
         this.loginForm.value.username
       );
+
+      this.loginAuthService.getLoggedInUser().subscribe((res) => {
+        this.loggedUser = res;
+      });
+
+      this.loginSharedService.updateLoggedInUser(this.loggedUser);
 
       console.log('valid user');
       this.router.navigate(['/admin']);

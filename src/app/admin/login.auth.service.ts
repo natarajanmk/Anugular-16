@@ -17,13 +17,13 @@ export class LoginAuthService {
   private redirectUrl: string = '/';
   private loginUrl: string = '/login';
 
+  private _loggedInUserInfo = new Subject<LoginUser>();
+
   //Subject declartion
   private _loginSuccess = new Subject<boolean>();
 
   //Behaviour declaration
-  private _loginUserInfo = new BehaviorSubject<LoginUser | undefined>(
-    undefined
-  );
+  private _loginUserInfo = new BehaviorSubject<any>(null);
 
   test: LoginUser[] = [
     { userId: 1, userName: 'abc', password: 'abc', role: 'USER' },
@@ -34,7 +34,7 @@ export class LoginAuthService {
     return this._loginSuccess;
   }
 
-  userLoginInfo(): Observable<LoginUser | undefined> {
+  userLoginInfo(): Observable<LoginUser> {
     return this._loginUserInfo;
   }
 
@@ -50,6 +50,7 @@ export class LoginAuthService {
   }
 
   isValidUser(username: string, password: string): boolean {
+    this._loginSuccess.next(false);
     this.isloggedIn = false;
 
     this.getAllLoginUser1()
@@ -58,21 +59,26 @@ export class LoginAuthService {
           let user = users.find(
             (user) => user.userName === username && user.password === password
           );
-          //console.log('find:' + JSON.stringify(user));
+          //console.log('find1:' + JSON.stringify(user));
           return (this.loggedInUser = user);
         })
       )
-      .subscribe((res) => {
-        //console.log('find:' + JSON.stringify(this.loggedInUser));
-        if (this.loggedInUser) {
-          this.loggedInUser = res;
+      .subscribe({
+        next: (data) => {
+          //this._loginSuccess.next(true);
           this.isloggedIn = true;
-        }
+          this._loginUserInfo.next(data);
+          //console.log('find2:' + JSON.stringify(this._loginUserInfo));
+        },
+        error: () => {
+          this._loginSuccess.next(false);
+        },
       });
     return this.isloggedIn;
   }
 
-  isValidUser1(username: string, password: string): Observable<boolean> {
+  /*
+  loginValidation(username: string, password: string): Observable<boolean> {
     this._loginSuccess.next(false);
 
     this.getAllLoginUser1()
@@ -81,7 +87,6 @@ export class LoginAuthService {
           let user = users.find(
             (user) => user.userName === username && user.password === password
           );
-          //console.log('find:' + JSON.stringify(user));
           return (this.loggedInUser = user);
         })
       )
@@ -96,7 +101,7 @@ export class LoginAuthService {
       });
     return this._loginSuccess;
   }
-
+*/
   isUserLoggedIn(): boolean {
     return this.isloggedIn;
   }
@@ -109,9 +114,10 @@ export class LoginAuthService {
   getLoginUrl(): string {
     return this.loginUrl;
   }
-  getLoggedInUser(): LoginUser | undefined {
-    return this.loggedInUser;
+  getLoggedInUser(): Observable<LoginUser> {
+    return this._loginUserInfo;
   }
+
   logoutUser(): void {
     this.isloggedIn = false;
   }
