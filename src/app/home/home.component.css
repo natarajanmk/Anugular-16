@@ -9,3 +9,9 @@ img {
   background: url(https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif)
     no-repeat center;
 }
+.item {
+  background: #f9f9f9;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #d9d9d9;
+}

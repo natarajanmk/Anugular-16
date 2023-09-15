@@ -1,27 +1,13 @@
 <p>home page is working</p>
 
-<!-- <div>
-  {{ loginInfo }}
-</div> -->
+<div>
+  <ul>
+    <li *ngFor="let i of loginUser">
+      {{ loginUser[i].userName }}
+    </li>
+  </ul>
+</div>
 
-<img
-  srcset="
-    https://picsum.photos/540/304 540w,
-    https://picsum.photos/960/540 960w
-  "
-  sizes="(min-width: 576px) 540px, 100vw"
-  src="https://picsum.photos/300/160"
-/>
-
-<br />
-<img
-  srcset="
-    https://picsum.photos/540/304 540w,
-    https://picsum.photos/960/540 960w
-  "
-  sizes="(min-width: 576px) 540px, 100vw"
-  src="https://picsum.photos/300/160"
-/>
 <div>
   <p appBasicHighlightDirective>
     Directive examples: Basi directive highlighter

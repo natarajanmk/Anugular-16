@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { DirectivesModule } from '../_directive/directives';
+import { DisplayLoginUser } from '../_model/user';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +19,22 @@ export class HomeComponent implements OnInit {
   loginInfo: any = null;
   color: string = 'red';
   alertMessage: string = 'welcome custome alert message';
+  loginUser: DisplayLoginUser[] = [];
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
-      this.loginInfo = JSON.stringify(data['loginInfo']);
+      let result: any[] = data['loginInfo'];
+      result.forEach((res) => {
+        let result = new DisplayLoginUser(
+          res.userId,
+          res.userName,
+          res.password,
+          res.role
+        );
+        this.loginUser.push(res);
+      });
+      console.log(this.loginUser);
+      //this.loginInfo = JSON.stringify(data['loginInfo']);
     });
   }
 }
