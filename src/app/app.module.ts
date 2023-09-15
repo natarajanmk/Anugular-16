@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './_authentication/auth-service/auth.service';
 import { AuthGuardService } from './_authentication/auth-service/auth-guard.service';
 import { DirectivesModule } from './_directive/directives';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -19,6 +20,7 @@ import { DirectivesModule } from './_directive/directives';
     AppRoutingModule,
     DirectivesModule,
     NgbCollapseModule,
+    HomeModule
   ],
   providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent],

@@ -1,12 +1,6 @@
 <p>home page is working</p>
 
-<div>
-  <ul>
-    <li *ngFor="let i of loginUser">
-      {{ loginUser[i].userName }}
-    </li>
-  </ul>
-</div>
+<div *ngFor="let user of loginUser"></div>
 
 <div>
   <p appBasicHighlightDirective>
