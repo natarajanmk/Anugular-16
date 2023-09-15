@@ -1,7 +1,11 @@
 <p>home page is working</p>
 
-<div *ngFor="let user of loginUser"></div>
-
+<div *ngFor="let movie of loginUser">
+  <label>UserId:</label> {{ movie.userId }} <label>Name:</label>
+  {{ movie.userName }}
+  <label>Role:</label>
+  {{ movie.role }}
+</div>
 <div>
   <p appBasicHighlightDirective>
     Directive examples: Basi directive highlighter

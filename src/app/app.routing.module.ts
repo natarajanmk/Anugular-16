@@ -7,7 +7,6 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ProductsComponent } from './products/products.component';
 import { ErrorComponent } from './error/error.component';
 import { HomeService } from './_services';
-import { DirectivesModule } from './_directive/directives';
 
 const routes: Routes = [
   {
@@ -37,7 +36,7 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
