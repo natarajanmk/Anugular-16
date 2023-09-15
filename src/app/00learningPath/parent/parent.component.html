@@ -1,0 +1,5 @@
+<app-child [setterChange]="p_setterResult" #child></app-child>
+
+<br />
+<button (click)="update()">Update</button>
+<button (click)="child._viewResult = child._viewResult + 1">View Update</button>

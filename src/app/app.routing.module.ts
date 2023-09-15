@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
+  {
+    path: 'learning',
+    loadChildren: () =>
+      import('./00learningPath/learning.module').then((m) => m.LearningModule),
+  },
   { path: '**', component: ErrorComponent },
 ];
 @NgModule({

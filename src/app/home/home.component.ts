@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { DirectivesModule } from '../_directive/directives';
 
 @Component({
@@ -8,7 +9,12 @@ import { DirectivesModule } from '../_directive/directives';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private grandParent: AppComponent
+  ) {
+    console.log(grandParent);
+  }
   loginInfo: any = null;
   color: string = 'red';
   alertMessage: string = 'welcome custome alert message';
