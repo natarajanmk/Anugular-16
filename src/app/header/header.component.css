@@ -1,3 +1,25 @@
+.main-container nav {
+  background-color: #003300;
+}
+.main-container nav ul {
+  display: flex;
+}
+
+.main-container nav ul li {
+  list-style: none;
+  color: white;
+  padding: 15px 15px;
+  cursor: pointer;
+}
+.main-container nav ul li:hover {
+  background-color: #007070;
+  transition: all 1s;
+}
+
+.main-container nav ul li:last-child {
+  margin-left: auto;
+}
+
 .loginHeaderName {
   color: white;
   font-family: 'Montserrat', sans-serif;
@@ -5,9 +27,6 @@
 }
 .navbar .navbar-toggler {
   background-color: rgb(130, 193, 129);
-}
-.navbar .navbar-toggler:focus {
-  color: transparent;
 }
 
 .navbar {
@@ -26,58 +45,19 @@
 .navbar-toggler {
   background-color: rgb(236, 227, 227);
 }
-.navbar {
-  background-color: #003300;
-}
 .navbar .navbar-nav > .active > a:hover,
 .navbar .navbar-nav > li > a:hover,
 .navbar .navbar-nav > li > a:focus {
-  background-color: #002200;
-}
-
-.navbar .navbar-nav > .active > a,
-.navbar .navbar-nav > .open > a,
-.navbar .navbar-nav > .open > a,
-.navbar .navbar-nav > .open > a:hover,
-.navbar .navbar-nav > .open > a,
-.navbar .navbar-nav > .open > a:hover,
-.navbar .navbar-nav > .open > a:focus {
-  background-color: #003300;
-}
-
-.navbar {
-  background-image: none;
-}
-
-.navbar {
-  border-color: #003300;
-}
-
-.navbar .navbar-brand {
-  color: #ffffff;
-}
-
-.navbar .navbar-brand:hover {
-  color: #ffcc00;
+  background-color: #007070;
 }
 
 .navbar .navbar-nav > li > a {
   color: #ffffff;
 }
 
-.navbar .navbar-nav > li > a:hover,
-.navbar .navbar-nav > li > a:focus {
-  color: #ffcc00;
-}
-
 .navbar .navbar-nav > .active > a,
 .navbar .navbar-nav > .open > a,
 .navbar .navbar-nav > .open > a:hover,
 .navbar .navbar-nav > .open > a:focus {
-  color: #ffcc00;
-}
-
-.navbar .navbar-nav > .active > a:hover,
-.navbar .navbar-nav > .active > a:focus {
   color: #ffcc00;
 }
