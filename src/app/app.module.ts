@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './_authentication/auth-service/auth.service';
 import { AuthGuardService } from './_authentication/auth-service/auth-guard.service';
 import { HomeModule } from './home/home.module';
+import { ProductModule } from './products/products.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
