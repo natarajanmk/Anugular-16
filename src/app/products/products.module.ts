@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { ProductsComponent } from './products.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [ProductsComponent],
-  imports: [BrowserModule, ProductsComponent],
+  imports: [CommonModule],
+  exports: [ProductsComponent],
 })
 export class ProductModule {}
