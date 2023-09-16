@@ -19,7 +19,12 @@ const routes: Routes = [
     component: HomeComponent,
     resolve: { loginInfo: HomeService },
   },
-  { path: 'products', component: ProductsComponent },
+  // { path: 'products', component: ProductsComponent },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductModule),
+  },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   {
